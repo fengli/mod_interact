@@ -10,6 +10,8 @@ mod\_unavailable\_post sends a post request with information about a user that h
 Note:
 ==========
 
+Have tested, supports 15.04.91 well.
+
 Between ejabberd 2.1.13 and 13.10 there were significant changes and modules compiled for one version don't directly work with the other version.
 There is an ejabberd_2.1.13 branch for versions of these modules that work with ejabberd 2.1.13
 
@@ -20,6 +22,9 @@ Installing:
   * You probably want this to be the same machine you intend to install/run ejabberd on. I'm not sure about the interoperability of ejabberd/erlang versions.
 * Open the Emakefile and change ```/usr/local/Cellar/ejabberd/2.1.10/lib/ejabberd/include``` to the correct path on your machine
 * Run the build.sh script to build *.beam files
+* If you got the error: can't find include lib "p1_xml/include/xml.hrl", try the following:
+  - in ejabberd src dir, run ./rebar get-deps, and then ./rebar compile
+  - copy the deps to the include folder: cp -R deps/* /lib/ejabberd/include/
 * Copy the *.beam files from the ebin directory to the location where the other modules are for your server
 * Add the configuration shown below to your ejabberd.cfg file, providing the correct values for auth\_token, and post\_url
 
